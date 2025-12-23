@@ -1,10 +1,13 @@
+Для максимальной компактности я уменьшил внутренние отступы (padding), размеры шрифтов и габариты изображений. Теперь контент занимает меньше места по вертикали, что делает его удобным для восприятия при любом масштабе.
+
+Обновленный CSS (style.css)
+CSS
+
 body {
     background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 50%, #e6f2ff 100%);
     margin: 0;
     color: #333;
     font-family: 'Arial', sans-serif;
-    overflow-x: hidden;
-    /* Центрирование контента при малом масштабе */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,70 +17,63 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 15px 0;
+    padding: 10px 0; /* Компактная высота */
     background: linear-gradient(to right, #0d47a1, #1976d2);
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 1000;
-    box-shadow: 0 4px 12px rgba(0, 0, 139, 0.2);
 }
 
-.logo { height: 50px; margin-right: 20px; border-radius: 8px; border: 2px solid white; }
+.logo { height: 40px; margin-right: 15px; border-radius: 5px; }
 
 .link {
     color: white;
     text-decoration: none;
-    margin: 0 10px;
-    padding: 8px 15px;
-    border-radius: 20px;
+    margin: 0 8px;
+    padding: 5px 12px;
+    font-size: 15px;
     transition: 0.3s;
 }
 
-.link:hover { background: rgba(255,255,255,0.2); }
-
-/* Ограничитель ширины для всех секций */
+/* Ограничитель ширины */
 .aboutme, .hcenter, .Myskills, .myprojects, .myprojects1 {
-    width: 100%;
-    max-width: 1200px; /* Сайт не растянется шире этого на 25% */
-    box-sizing: border-box;
+    width: 95%;
+    max-width: 1000px; /* Сузил основной контейнер */
 }
 
-.aboutme { padding: 120px 20px 60px; min-height: 80vh; }
+.aboutme { padding: 80px 0 40px; min-height: auto; }
 
-.korobka { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+.korobka { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
 
-.korobka h1 { font-size: 4rem; color: #0d47a1; margin: 10px 0; }
-.korobka h2 { font-size: 1.8rem; color: #1976d2; }
-.korobka img { width: 350px; border-radius: 20px; border: 5px solid #bbdefb; }
+.korobka h1 { font-size: 2.5rem; color: #0d47a1; margin: 5px 0; }
+.korobka h2 { font-size: 1.3rem; color: #1976d2; margin: 0; }
+.korobka img { width: 250px; border-radius: 15px; } /* Уменьшено фото */
 
 .text, .myprojects1 {
-    font-size: 2.5rem;
+    font-size: 1.8rem;
     color: #0d47a1;
     text-align: center;
-    background: linear-gradient(to right, #e3f2fd, #bbdefb);
-    padding: 30px;
-    margin: 40px 0;
-    border-radius: 15px;
+    background: #e3f2fd;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 10px;
 }
 
-.hcenter { padding: 30px; background: white; border-radius: 15px; border-left: 8px solid #1976d2; box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+.hcenter { padding: 20px; background: white; border-radius: 10px; border-left: 5px solid #1976d2; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
 
-.history { font-size: 1.2rem; line-height: 1.6; }
-.narrator { width: 250px; border-radius: 15px; margin-right: 25px; }
+.history { font-size: 1rem; line-height: 1.5; margin: 0; }
+.narrator { width: 180px; border-radius: 10px; margin-right: 20px; }
 
-.Myskills { padding: 40px; background: #e8f4ff; border-radius: 20px; text-align: center; }
-.hz { display: flex; justify-content: space-around; flex-wrap: wrap; }
-.skills { font-size: 1.3rem; padding: 15px; background: white; border-radius: 10px; margin: 10px; border-left: 5px solid #2196f3; }
+.Myskills { padding: 25px; background: #f0f7ff; border-radius: 15px; }
+.hz { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.skills { font-size: 1.1rem; padding: 10px 15px; background: white; border-radius: 8px; margin: 5px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
 
-.myprojects { display: flex; flex-direction: column; gap: 40px; }
-.myprojects > div { background: white; border-radius: 20px; padding: 25px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+.myprojects { display: flex; flex-direction: column; gap: 20px; padding-bottom: 40px; }
+.myprojects > div { background: white; border-radius: 15px; padding: 15px; border: 1px solid #e0e0e0; }
 
-.project1, .project2, .project3 { display: flex; align-items: center; gap: 20px; }
-.sample { width: 280px; border-radius: 15px; }
-.text1 { flex: 1; font-size: 1.1rem; }
+.project1, .project2, .project3 { display: flex; align-items: center; gap: 15px; }
+.sample { width: 200px; border-radius: 10px; }
+.text1 { flex: 1; font-size: 0.95rem; line-height: 1.4; }
 
-@media (max-width: 768px) {
-    .korobka, .project1, .project2, .project3 { flex-direction: column; text-align: center; }
-    .narrator, .sample { margin: 0 0 20px 0; }
-}
+html { scroll-behavior: smooth; }

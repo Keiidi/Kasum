@@ -3,94 +3,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kasym's site</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Kasym's Portfolio</title>
+    <style>
+        :root {
+            --primary: rgb(0, 0, 250);
+            --white: #ffffff;
+            --gray: #f4f4f4;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        
+        html { scroll-behavior: smooth; }
+
+        body { background-color: var(--white); color: #333; line-height: 1.6; }
+
+        /* Навигация */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo { height: 50px; border-radius: 8px; }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary);
+            margin-left: 20px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover { opacity: 0.7; }
+
+        /* Герой-секция */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 100px 10%;
+            background: linear-gradient(135deg, var(--primary) 0%, #0000aa 100%);
+            color: white;
+            min-height: 80vh;
+        }
+
+        .hero-text h1 { font-size: 4rem; margin-bottom: 10px; }
+        .hero-img img { width: 300px; border-radius: 50%; border: 5px solid white; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+
+        /* Секции */
+        section { padding: 80px 10%; }
+        h2.section-title { text-align: center; color: var(--primary); font-size: 2.5rem; margin-bottom: 40px; }
+
+        .about-content { display: flex; align-items: center; gap: 40px; }
+        .about-content img { width: 400px; border-radius: 15px; }
+
+        /* Скиллы */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-item {
+            background: var(--gray);
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            border-left: 5px solid var(--primary);
+        }
+
+        /* Проекты */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover { transform: translateY(-10px); }
+        .project-card img { width: 100%; height: 200px; object-fit: cover; }
+        .project-card-info { padding: 20px; }
+        .project-card-info h3 { color: var(--primary); margin-bottom: 10px; }
+
+        @media (max-width: 768px) {
+            .hero, .about-content { flex-direction: column; text-align: center; }
+            .hero-text h1 { font-size: 2.5rem; }
+        }
+    </style>
 </head>
 <body>
-    <section class="navbar">
-        <img class="logo" src="logo.jpeg" alt="Logo">
-        <a class="link" href="#"><b>Home</b></a>
-        <a class="link" href="#aboutme"><b>About me</b></a>
-        <a class="link" href="#myskills"><b>My skills</b></a>
-        <a class="link" href="#myprojects"><b>My projects</b></a>
-        <a class="link" href="https://youtu.be/dQw4w9WgXcQ?si=hZkkEkm_vnjHPa3o"><b>Contact me</b></a>
-    </section>
 
-    <section class="aboutme" id="home">
-        <div class="korobka">
-            <div>
-                <h2>Genius, playboy, philantropist, millioner</h2>
-                <h1>Kasym</h1>
-                <h2>Student of NSPM</h2>
-            </div>
-            <div>
-                <img src="Kasymphoto.jpeg" alt="Kasym's photo">
-            </div>
+    <nav class="navbar">
+        <img src="logo.jpeg" alt="Logo" class="logo">
+        <div class="nav-links">
+            <a href="#home">Домой</a>
+            <a href="#aboutme">Обо мне</a>
+            <a href="#myskills">Навыки</a>
+            <a href="#myprojects">Проекты</a>
+            <a href="https://youtu.be/dQw4w9WgXcQ?si=hZkkEkm_vnjHPa3o">Контакт</a>
+        </div>
+    </nav>
+
+    <header class="hero" id="home">
+        <div class="hero-text">
+            <h2>Genius, Playboy, Philanthropist</h2>
+            <h1>Kasym</h1>
+            <p>Student of NSPM</p>
+        </div>
+        <div class="hero-img">
+            <img src="Kasymphoto.jpeg" alt="Kasym">
+        </div>
+    </header>
+
+    <section id="aboutme">
+        <h2 class="section-title">Обо мне</h2>
+        <div class="about-content">
+            <img src="skiing.jpeg" alt="Skiing">
+            <p>Morbi leo mi, nonummy eget, tristique non, rhoncus non, leo. Nullam faucibus mi quis velit. Integer in sapien. Fusce tellus odio, dapibus id, fermentum quis, suscipit id, erat. Fusce aliquam vestibulum ipsum.</p>
         </div>
     </section>
 
-    <h1 class="text" id="aboutme">About me</h1>
-    <div class="hcenter">
-        <div class="korobka"> 
-            <div>
-                <img src="skiing.jpeg" class="narrator" alt="Skiing photo">
-            </div>
-            <p class="history">
-                Morbi leo mi, nonummy eget, tristique non, rhoncus non, leo. Nullam faucibus mi quis velit. 
-                Integer in sapien. Fusce tellus odio, dapibus id, fermentum quis, suscipit id, erat. 
-                Fusce aliquam vestibulum ipsum. Aliquam erat volutpat. Pellentesque sapien.
-            </p>
+    <section id="myskills" style="background: #f9f9f9;">
+        <h2 class="section-title">Мои навыки</h2>
+        <div class="skills-grid">
+            <div class="skill-item"><span>Skiing</span> <span>7/10</span></div>
+            <div class="skill-item"><span>Linguistic</span> <span>10/10</span></div>
+            <div class="skill-item"><span>Coding</span> <span>10/10</span></div>
+            <div class="skill-item"><span>Math</span> <span>10/10</span></div>
+            <div class="skill-item"><span>C++</span> <span>10/10</span></div>
+            <div class="skill-item"><span>Minecraft</span> <span>Master</span></div>
         </div>
-    </div>
+    </section>
 
-    <img class="sphere1" src="sphere.png" alt="Decoration">
-
-    <section class="Myskills" id="myskills">
-        <h1>My skills</h1>
-        <div class="hz">
-            <div>
-                <p class="skills"><b>Skiing</b> ⚫⚫⚫⚫⚫⚫⚫🟣🟣🟣</p>
-                <p class="skills"><b>Linguistic</b> ⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫</p>
-                <p class="skills"><b>Coding</b> ⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫</p>
-                <p class="skills"><b>Math</b> ⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫</p>
+    <section id="myprojects">
+        <h2 class="section-title">Мои проекты</h2>
+        <div class="projects-container">
+            <div class="project-card">
+                <img src="umai1.jpeg" alt="UMAI">
+                <div class="project-card-info">
+                    <h3>UMAI</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vitae lobortis quam.</p>
+                </div>
             </div>
-            <div>
-                <p class="skills"><b>C++</b> ⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫</p>
-                <p class="skills"><b>Minecraft</b> ⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫</p>
-                <p class="skills"><b>Problem Solving</b> ⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫</p>
-                <p class="skills"><b>Gaming</b> ⚫⚫⚫⚫⚫⚫⚫⚫⚫⚫</p>
+            <div class="project-card">
+                <img src="ieltsres.jpeg" alt="IELTS">
+                <div class="project-card-info">
+                    <h3>IELTS C1</h3>
+                    <p>Результаты международного экзамена и подготовка к нему.</p>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="epstein.jpeg" alt="C++ Game">
+                <div class="project-card-info">
+                    <h3>Game in C++</h3>
+                    <p>Разработка игровой логики и графического интерфейса на C++.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <div class="myprojects1" id="myprojects">
-        <h1 class="baba">My projects</h1>
-    </div>
-
-    <section class="myprojects">
-        <div>
-            <h2 class="de1">UMAI</h2>
-            <div class="project1">
-                <img class="sample" src="umai1.jpeg" alt="UMAI Project">
-                <p class="text1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vitae lobortis quam, quis ultricies risus. Nunc vel placerat ipsum. Pellentesque ut nunc maximus, sollicitudin neque ultrices, posuere nibh. </p>
-            </div>
-        </div>
-
-        <div>
-            <h2 class="de2">IELTS C1</h2>
-            <div class="project2">
-                <img class="sample" src="ieltsres.jpeg" alt="IELTS Result">
-                <p class="text1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vitae lobortis quam, quis ultricies risus. Nunc vel placerat ipsum. Pellentesque ut nunc maximus, sollicitudin neque ultrices, posuere nibh. </p>
-            </div>
-        </div>
-
-        <div>
-            <h2 class="de3">Game in C++</h2>
-            <div class="project3">
-                <img class="sample" src="epstein.jpeg" alt="Game Project">
-                <p class="text1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vitae lobortis quam, quis ultricies risus. Nunc vel placerat ipsum. Pellentesque ut nunc maximus, sollicitudin neque ultrices, posuere nibh. </p>
-            </div>
-        </div>
-    </section>
-</body>  
+</body>
 </html>

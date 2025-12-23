@@ -12,9 +12,9 @@
             --light-blue: #e6e6ff;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         html { scroll-behavior: smooth; }
-        body { background-color: var(--white); color: #333; line-height: 1.6; }
+        body { background-color: var(--white); color: #333; line-height: 1.6; overflow-x: hidden; }
 
         /* Navigation */
         .navbar {
@@ -36,7 +36,6 @@
             font-weight: bold;
             transition: 0.3s;
         }
-        .nav-links a:hover { opacity: 0.6; }
 
         /* Hero Section */
         .hero {
@@ -46,16 +45,35 @@
             padding: 80px 10%;
             background: linear-gradient(135deg, var(--primary) 0%, #00008b 100%);
             color: white;
-            min-height: 70vh;
+            min-height: 60vh;
         }
-        .hero-text h1 { font-size: 3.5rem; margin-bottom: 10px; }
-        .hero-img img { width: 280px; height: 280px; object-fit: cover; border-radius: 50%; border: 5px solid white; }
 
-        /* Section Basics */
+        /* --- АНИМАЦИЯ УЕЗЖАЮЩЕГО ФОТО --- */
+        .hero-img {
+            cursor: pointer;
+            transition: transform 1s ease-in-out, opacity 1s;
+        }
+
+        /* Этот класс добавится при клике через JS */
+        .hero-img.drive-away {
+            transform: translateX(150vw) rotate(20deg); /* Уезжает вправо за экран */
+            opacity: 0;
+            pointer-events: none; /* Чтобы нельзя было кликнуть снова, пока она улетает */
+        }
+
+        .hero-img img { 
+            width: 250px; 
+            height: 250px; 
+            object-fit: cover; 
+            border-radius: 50%; 
+            border: 5px solid white; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Skills Progress */
         section { padding: 60px 10%; }
         h2.section-title { text-align: center; color: var(--primary); font-size: 2.2rem; margin-bottom: 40px; }
 
-        /* Skills with Progress Bars */
         .skills-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -63,46 +81,19 @@
             max-width: 1000px;
             margin: 0 auto;
         }
-        .skill-box { margin-bottom: 20px; }
         .skill-info { display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: bold; }
-        
-        .progress-bar {
-            background: var(--light-blue);
-            border-radius: 20px;
-            height: 12px;
-            width: 100%;
-            overflow: hidden;
-        }
-        .progress-fill {
-            background: var(--primary);
-            height: 100%;
-            border-radius: 20px;
-            transition: width 1.5s ease-in-out;
-        }
+        .progress-bar { background: var(--light-blue); border-radius: 20px; height: 12px; width: 100%; overflow: hidden; }
+        .progress-fill { background: var(--primary); height: 100%; border-radius: 20px; width: 0; animation: loadProgress 2s ease-out forwards; }
+
+        @keyframes loadProgress { from { width: 0; } to { width: var(--target-width); } }
 
         /* Projects */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-        .card {
-            background: white;
-            border: 1px solid #eee;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
-        }
-        .card:hover { transform: translateY(-8px); }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .card { background: white; border: 1px solid #eee; border-radius: 15px; overflow: hidden; transition: 0.3s; }
+        .card:hover { transform: translateY(-8px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
         .card img { width: 100%; height: 200px; object-fit: cover; }
         .card-body { padding: 20px; }
-        .card-body h3 { color: var(--primary); margin-bottom: 10px; }
 
-        @media (max-width: 768px) {
-            .hero { flex-direction: column; text-align: center; gap: 30px; }
-            .hero-text h1 { font-size: 2.5rem; }
-        }
     </style>
 </head>
 <body>
@@ -114,7 +105,7 @@
             <a href="#about">About</a>
             <a href="#skills">Skills</a>
             <a href="#projects">Projects</a>
-            <a href="https://youtu.be/dQw4w9WgXcQ?si=hZkkEkm_vnjHPa3o">Contact</a>
+            <a href="https://youtu.be/dQw4w9WgXcQ">Contact</a>
         </div>
     </nav>
 
@@ -124,7 +115,7 @@
             <h1>Kasym</h1>
             <p>Student of NSPM</p>
         </div>
-        <div class="hero-img">
+        <div class="hero-img" id="profile-pic" title="Click me!">
             <img src="Kasymphoto.jpeg" alt="Kasym">
         </div>
     </header>
@@ -132,44 +123,45 @@
     <section id="about">
         <h2 class="section-title">About Me</h2>
         <div style="display: flex; align-items: center; gap: 40px; flex-wrap: wrap; justify-content: center;">
-            <img src="skiing.jpeg" alt="Skiing" style="max-width: 350px; border-radius: 15px;">
+            <img src="skiing.jpeg" alt="Skiing" style="max-width: 300px; border-radius: 15px;">
             <p style="max-width: 500px;">
-                Morbi leo mi, nonummy eget, tristique non, rhoncus non, leo. Nullam faucibus mi quis velit. 
-                Integer in sapien. Fusce tellus odio, dapibus id, fermentum quis, suscipit id, erat. 
-                Fusce aliquam vestibulum ipsum.
+                Passionate student at NSPM. Focused on coding, mathematics, and professional skiing. 
+                Constantly learning and building new digital experiences.
             </p>
         </div>
     </section>
 
-    <section id="skills" style="background-color: #fcfcfc;">
+    <section id="skills" style="background-color: #f9f9f9;">
         <h2 class="section-title">My Skills</h2>
         <div class="skills-container">
             <div>
                 <div class="skill-box">
                     <div class="skill-info"><span>Skiing</span><span>70%</span></div>
-                    <div class="progress-bar"><div class="progress-fill" style="width: 70%;"></div></div>
+                    <div class="progress-bar"><div class="progress-fill" style="--target-width: 70%;"></div></div>
                 </div>
                 <div class="skill-box">
                     <div class="skill-info"><span>Linguistic</span><span>100%</span></div>
-                    <div class="progress-bar"><div class="progress-fill" style="width: 100%;"></div></div>
+                    <div class="progress-bar"><div class="progress-fill" style="--target-width: 100%;"></div></div>
                 </div>
                 <div class="skill-box">
                     <div class="skill-info"><span>Coding</span><span>100%</span></div>
-                    <div class="progress-bar"><div class="progress-fill" style="width: 100%;"></div></div>
+                    <div class="progress-bar"><div class="progress-fill" style="--target-width: 100%;"></div></div>
                 </div>
             </div>
             <div>
                 <div class="skill-box">
                     <div class="skill-info"><span>Math</span><span>100%</span></div>
-                    <div class="progress-bar"><div class="progress-fill" style="width: 100%;"></div></div>
+                    <div class="progress-bar"><div class="progress-fill" style="--target-width: 100%;"></div></div>
                 </div>
                 <div class="skill-box">
                     <div class="skill-info"><span>C++</span><span>100%</span></div>
-                    <div class="progress-bar"><div class="progress-fill" style="width: 100%;"></div></div>
+                    <div class="progress-bar"><div class="progress-fill" style="--target-width: 100%;"></div></div>
                 </div>
                 <div class="skill-box">
                     <div class="skill-info"><span>Minecraft</span><span>Master</span></div>
-                    <div class="progress-bar"><div class="progress-fill" style="width: 100%; background: linear-gradient(90deg, var(--primary), #00ff00);"></div></div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="--target-width: 100%; background: linear-gradient(90deg, var(--primary), #00ff00);"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -180,27 +172,32 @@
         <div class="projects-grid">
             <div class="card">
                 <img src="umai1.jpeg" alt="UMAI">
-                <div class="card-body">
-                    <h3>UMAI</h3>
-                    <p>Innovative solution developed to streamline processes using modern tech stacks.</p>
-                </div>
+                <div class="card-body"><h3>UMAI</h3><p>Tech solution for process optimization.</p></div>
             </div>
             <div class="card">
                 <img src="ieltsres.jpeg" alt="IELTS">
-                <div class="card-body">
-                    <h3>IELTS C1</h3>
-                    <p>Achieved Advanced level certification, demonstrating high-level English proficiency.</p>
-                </div>
+                <div class="card-body"><h3>IELTS C1</h3><p>Advanced English proficiency level.</p></div>
             </div>
             <div class="card">
-                <img src="epstein.jpeg" alt="C++ Game">
-                <div class="card-body">
-                    <h3>C++ Game Development</h3>
-                    <p>A custom-built game engine and logic developed entirely in C++.</p>
-                </div>
+                <img src="epstein.jpeg" alt="Game">
+                <div class="card-body"><h3>C++ Game</h3><p>Custom game logic and engine.</p></div>
             </div>
         </div>
     </section>
+
+    <script>
+        const profilePic = document.getElementById('profile-pic');
+        
+        profilePic.addEventListener('click', () => {
+            // Добавляем класс, который запускает CSS-анимацию уезда
+            profilePic.classList.add('drive-away');
+            
+            // Опционально: через 2 секунды возвращаем картинку на место (эффект респавна)
+            setTimeout(() => {
+                profilePic.classList.remove('drive-away');
+            }, 3000);
+        });
+    </script>
 
 </body>
 </html>

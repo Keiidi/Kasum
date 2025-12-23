@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,15 +9,14 @@
             --primary: rgb(0, 0, 250);
             --white: #ffffff;
             --gray: #f4f4f4;
+            --light-blue: #e6e6ff;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         html { scroll-behavior: smooth; }
-
         body { background-color: var(--white); color: #333; line-height: 1.6; }
 
-        /* Навигация */
+        /* Navigation */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -29,9 +28,7 @@
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-
         .logo { height: 50px; border-radius: 8px; }
-
         .nav-links a {
             text-decoration: none;
             color: var(--primary);
@@ -39,68 +36,71 @@
             font-weight: bold;
             transition: 0.3s;
         }
+        .nav-links a:hover { opacity: 0.6; }
 
-        .nav-links a:hover { opacity: 0.7; }
-
-        /* Герой-секция */
+        /* Hero Section */
         .hero {
             display: flex;
             align-items: center;
             justify-content: space-around;
-            padding: 100px 10%;
-            background: linear-gradient(135deg, var(--primary) 0%, #0000aa 100%);
+            padding: 80px 10%;
+            background: linear-gradient(135deg, var(--primary) 0%, #00008b 100%);
             color: white;
-            min-height: 80vh;
+            min-height: 70vh;
         }
+        .hero-text h1 { font-size: 3.5rem; margin-bottom: 10px; }
+        .hero-img img { width: 280px; height: 280px; object-fit: cover; border-radius: 50%; border: 5px solid white; }
 
-        .hero-text h1 { font-size: 4rem; margin-bottom: 10px; }
-        .hero-img img { width: 300px; border-radius: 50%; border: 5px solid white; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        /* Section Basics */
+        section { padding: 60px 10%; }
+        h2.section-title { text-align: center; color: var(--primary); font-size: 2.2rem; margin-bottom: 40px; }
 
-        /* Секции */
-        section { padding: 80px 10%; }
-        h2.section-title { text-align: center; color: var(--primary); font-size: 2.5rem; margin-bottom: 40px; }
-
-        .about-content { display: flex; align-items: center; gap: 40px; }
-        .about-content img { width: 400px; border-radius: 15px; }
-
-        /* Скиллы */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .skill-item {
-            background: var(--gray);
-            padding: 15px;
-            border-radius: 8px;
-            display: flex;
-            justify-content: space-between;
-            border-left: 5px solid var(--primary);
-        }
-
-        /* Проекты */
-        .projects-container {
+        /* Skills with Progress Bars */
+        .skills-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .skill-box { margin-bottom: 20px; }
+        .skill-info { display: flex; justify-content: space-between; margin-bottom: 8px; font-weight: bold; }
+        
+        .progress-bar {
+            background: var(--light-blue);
+            border-radius: 20px;
+            height: 12px;
+            width: 100%;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: var(--primary);
+            height: 100%;
+            border-radius: 20px;
+            transition: width 1.5s ease-in-out;
         }
 
-        .project-card {
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .card {
             background: white;
-            border: 1px solid #ddd;
-            border-radius: 12px;
+            border: 1px solid #eee;
+            border-radius: 15px;
             overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             transition: transform 0.3s;
         }
-
-        .project-card:hover { transform: translateY(-10px); }
-        .project-card img { width: 100%; height: 200px; object-fit: cover; }
-        .project-card-info { padding: 20px; }
-        .project-card-info h3 { color: var(--primary); margin-bottom: 10px; }
+        .card:hover { transform: translateY(-8px); }
+        .card img { width: 100%; height: 200px; object-fit: cover; }
+        .card-body { padding: 20px; }
+        .card-body h3 { color: var(--primary); margin-bottom: 10px; }
 
         @media (max-width: 768px) {
-            .hero, .about-content { flex-direction: column; text-align: center; }
+            .hero { flex-direction: column; text-align: center; gap: 30px; }
             .hero-text h1 { font-size: 2.5rem; }
         }
     </style>
@@ -110,11 +110,11 @@
     <nav class="navbar">
         <img src="logo.jpeg" alt="Logo" class="logo">
         <div class="nav-links">
-            <a href="#home">Домой</a>
-            <a href="#aboutme">Обо мне</a>
-            <a href="#myskills">Навыки</a>
-            <a href="#myprojects">Проекты</a>
-            <a href="https://youtu.be/dQw4w9WgXcQ?si=hZkkEkm_vnjHPa3o">Контакт</a>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="https://youtu.be/dQw4w9WgXcQ?si=hZkkEkm_vnjHPa3o">Contact</a>
         </div>
     </nav>
 
@@ -129,48 +129,74 @@
         </div>
     </header>
 
-    <section id="aboutme">
-        <h2 class="section-title">Обо мне</h2>
-        <div class="about-content">
-            <img src="skiing.jpeg" alt="Skiing">
-            <p>Morbi leo mi, nonummy eget, tristique non, rhoncus non, leo. Nullam faucibus mi quis velit. Integer in sapien. Fusce tellus odio, dapibus id, fermentum quis, suscipit id, erat. Fusce aliquam vestibulum ipsum.</p>
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <div style="display: flex; align-items: center; gap: 40px; flex-wrap: wrap; justify-content: center;">
+            <img src="skiing.jpeg" alt="Skiing" style="max-width: 350px; border-radius: 15px;">
+            <p style="max-width: 500px;">
+                Morbi leo mi, nonummy eget, tristique non, rhoncus non, leo. Nullam faucibus mi quis velit. 
+                Integer in sapien. Fusce tellus odio, dapibus id, fermentum quis, suscipit id, erat. 
+                Fusce aliquam vestibulum ipsum.
+            </p>
         </div>
     </section>
 
-    <section id="myskills" style="background: #f9f9f9;">
-        <h2 class="section-title">Мои навыки</h2>
-        <div class="skills-grid">
-            <div class="skill-item"><span>Skiing</span> <span>7/10</span></div>
-            <div class="skill-item"><span>Linguistic</span> <span>10/10</span></div>
-            <div class="skill-item"><span>Coding</span> <span>10/10</span></div>
-            <div class="skill-item"><span>Math</span> <span>10/10</span></div>
-            <div class="skill-item"><span>C++</span> <span>10/10</span></div>
-            <div class="skill-item"><span>Minecraft</span> <span>Master</span></div>
+    <section id="skills" style="background-color: #fcfcfc;">
+        <h2 class="section-title">My Skills</h2>
+        <div class="skills-container">
+            <div>
+                <div class="skill-box">
+                    <div class="skill-info"><span>Skiing</span><span>70%</span></div>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 70%;"></div></div>
+                </div>
+                <div class="skill-box">
+                    <div class="skill-info"><span>Linguistic</span><span>100%</span></div>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 100%;"></div></div>
+                </div>
+                <div class="skill-box">
+                    <div class="skill-info"><span>Coding</span><span>100%</span></div>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 100%;"></div></div>
+                </div>
+            </div>
+            <div>
+                <div class="skill-box">
+                    <div class="skill-info"><span>Math</span><span>100%</span></div>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 100%;"></div></div>
+                </div>
+                <div class="skill-box">
+                    <div class="skill-info"><span>C++</span><span>100%</span></div>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 100%;"></div></div>
+                </div>
+                <div class="skill-box">
+                    <div class="skill-info"><span>Minecraft</span><span>Master</span></div>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 100%; background: linear-gradient(90deg, var(--primary), #00ff00);"></div></div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="myprojects">
-        <h2 class="section-title">Мои проекты</h2>
-        <div class="projects-container">
-            <div class="project-card">
+    <section id="projects">
+        <h2 class="section-title">My Projects</h2>
+        <div class="projects-grid">
+            <div class="card">
                 <img src="umai1.jpeg" alt="UMAI">
-                <div class="project-card-info">
+                <div class="card-body">
                     <h3>UMAI</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vitae lobortis quam.</p>
+                    <p>Innovative solution developed to streamline processes using modern tech stacks.</p>
                 </div>
             </div>
-            <div class="project-card">
+            <div class="card">
                 <img src="ieltsres.jpeg" alt="IELTS">
-                <div class="project-card-info">
+                <div class="card-body">
                     <h3>IELTS C1</h3>
-                    <p>Результаты международного экзамена и подготовка к нему.</p>
+                    <p>Achieved Advanced level certification, demonstrating high-level English proficiency.</p>
                 </div>
             </div>
-            <div class="project-card">
+            <div class="card">
                 <img src="epstein.jpeg" alt="C++ Game">
-                <div class="project-card-info">
-                    <h3>Game in C++</h3>
-                    <p>Разработка игровой логики и графического интерфейса на C++.</p>
+                <div class="card-body">
+                    <h3>C++ Game Development</h3>
+                    <p>A custom-built game engine and logic developed entirely in C++.</p>
                 </div>
             </div>
         </div>
